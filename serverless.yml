@@ -1,0 +1,38 @@
+service: simple-mono-lambda
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-esbuild
+  - serverless-domain-manager
+
+useDotenv: true
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+
+  customDomain:
+    domainName: ${env:DOMAIN_NAME}
+    basePath: ""
+    stage: ${self:provider.stage}
+    certificateName: ${env:CERT_NAME}
+    createRoute53Record: false
+    endpointType: regional
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: prod
+  region: us-east-1
+
+  environment:
+    SOME_ENV: hello world
+
+functions:
+  app:
+    handler: src/index.handler
+    events:
+      - http:
+          method: ANY
+          path: /{proxy+}

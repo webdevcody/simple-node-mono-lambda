@@ -1,0 +1,3 @@
+- get to work without jq
+- remove DOTENV logs
+- prettify the console logs
