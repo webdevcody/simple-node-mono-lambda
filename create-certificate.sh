@@ -15,6 +15,8 @@ fi
 # Check if the certificate is validated
 CERTIFICATE_STATUS=$(aws acm describe-certificate --certificate-arn "$CERTIFICATE_ARN" | jq -r ".Certificate.Status")
 
+sleep 5
+
 if [ "$CERTIFICATE_STATUS" != "ISSUED" ]; then
   # Get the validation record to add to the DNS
   VALIDATION_RECORD=$(aws acm describe-certificate --certificate-arn "$CERTIFICATE_ARN" | jq -r ".Certificate.DomainValidationOptions[] | select(.DomainName==\"$CERT_NAME\") | .ResourceRecord")

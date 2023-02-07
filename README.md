@@ -18,9 +18,12 @@ This project is setup to create a custom domain for your api endpoint; therefore
   - AWS_SECRET_ACCESS_KEY
   - AWS_ACCESS_KEY_ID
   - AWS_REGION
-- node18.x is installed
-- jq is installed
-- create a `.env` using the `.env.sample`
+- `node18.x` is installed
+- `yarn` is installed
+- `jq` is installed
+  - on mac: `brew install jq`
+- run this command `cp .env.sample .env`
+- modify the `.env` file with your desired domain and cert
 
 ## How to Run
 
